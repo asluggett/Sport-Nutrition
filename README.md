@@ -94,13 +94,13 @@
           CHO = 1 * preTrainingTime * mass; // Convert to number
         } else if (preTrainingTime >= 2 && preTrainingTime < 3) {
           // If between 2 and 3 hours before training
-          CHO = 2 * preTrainingTime * mass; // Convert to number
+          CHO = 2 * mass; // Convert to number
         } else if (preTrainingTime >= 3 && preTrainingTime < 4) {
           // If between 3 and 4 hours before training
-          CHO = 3 * preTrainingTime * mass; // Convert to number
+          CHO = 3 * mass; // Convert to number
         } else if (preTrainingTime >= 4) {
           // If more than 4 hours before training
-          CHO = 4 * preTrainingTime * mass; // Convert to number
+          CHO = 4 * mass; // Convert to number
         }
         return CHO; // Convert to string after all calculations are done
       }
