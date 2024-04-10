@@ -73,7 +73,7 @@
           var preTrainingTime = hours * 60 + minutes;
 
           // Calculate total hours including fractional parts due to minutes
-          var totalHours = Math.floor(preTrainingTime / 60); // Get the total number of hours
+          var totalHours = Math.round(preTrainingTime / 60); // Get the total number of hours
           var remainingMinutes = preTrainingTime % 60; // Get the remaining minutes after calculating hours
           var hours = totalHours + remainingMinutes / 60;
 
