@@ -70,18 +70,14 @@
           }
 
           // Calculate total minutes
-          var preTrainingTime = hours * 60 + minutes;
-
-          // Calculate total hours including fractional parts due to minutes
-          var totalHours = Math.round(preTrainingTime / 60); // Get the total number of hours
-          var remainingMinutes = preTrainingTime % 60; // Get the remaining minutes after calculating hours
-          var hours = totalHours + remainingMinutes / 60;
+          var minsToHours = minutes / 60;
+          var preTrainingTime = hours + minsToHours;
 
           // Calculate carbohydrate intake based on pre-training time and mass
           var CHO = calculatePreTrainingCHO(preTrainingTime, mass);
 
           // Calculate carbohydrate intake range
-          var result = calculateCHOrange(CHO, hours);
+          var result = calculateCHOrange(CHO, preTrainingTime);
 
           // Display the result
           document.getElementById("result").innerHTML = result;
@@ -90,32 +86,31 @@
       // Function to calculate carbohydrate intake based on pre-training time and mass
       function calculatePreTrainingCHO(preTrainingTime, mass) {
         var CHO;
-        var hours = preTrainingTime / 60;
-        if (hours < 1 + 0.001) {
+        if (preTrainingTime < 1 + 0.001) {
           // If less than 1 hour before training
-          CHO = 1 * hours * mass; // Convert to number
-        } else if (hours >= 1 && hours < 2) {
+          CHO = 1 * preTrainingTime * mass; // Convert to number
+        } else if (preTrainingTime >= 1 && preTrainingTime < 2) {
           // If between 1 and 2 hours before training
-          CHO = 1 * hours * mass; // Convert to number
-        } else if (hours >= 2 && hours < 3) {
+          CHO = 1 * preTrainingTime * mass; // Convert to number
+        } else if (preTrainingTime >= 2 && preTrainingTime < 3) {
           // If between 2 and 3 hours before training
-          CHO = 2 * hours * mass; // Convert to number
-        } else if (hours >= 3 && hours < 4) {
+          CHO = 2 * preTrainingTime * mass; // Convert to number
+        } else if (preTrainingTime >= 3 && preTrainingTime < 4) {
           // If between 3 and 4 hours before training
-          CHO = 3 * hours * mass; // Convert to number
-        } else if (hours >= 4) {
+          CHO = 3 * preTrainingTime * mass; // Convert to number
+        } else if (preTrainingTime >= 4) {
           // If more than 4 hours before training
-          CHO = 4 * hours * mass; // Convert to number
+          CHO = 4 * preTrainingTime * mass; // Convert to number
         }
         return CHO; // Convert to string after all calculations are done
       }
 
       // Function to calculate carbohydrate intake range
-      function calculateCHOrange(CHO, hours) {
+      function calculateCHOrange(CHO, preTrainingTime) {
         var lowerCHO = CHO - CHO * 0.1;
         var result = "";
 
-        if (Math.floor(hours) < 1) {
+        if (Math.floor(preTrainingTime) < 1) {
           result +=
             "Given you are exercising in less than 1 hour, you should consume: " +
             CHO.toFixed(0) +
