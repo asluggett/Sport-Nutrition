@@ -1,132 +1,59 @@
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Nutrition Carbohydrate Calculator</title>
-    <link rel="stylesheet" href="styles.css">
-  </head>
-  <body>
-    <h1>Pre-Training Carbohydrate Calculator</h1>
-    <p>
-      For calculating individual carbohydrate requirements for before training.
-    </p>
+# athletics-report-generator
 
-    <form id="nutritionForm">
-      <label for="mass">Mass (kg):</label>
-      <input
-        type="number"
-        id="mass"
-        name="mass"
-        min="1"
-        step="0.1"
-        required
-      /><br /><br />
+# Example Template
 
-      <label for="hours">Number of hours before training:</label>
-      <input type="number" id="hours" name="hours" min="0" required />
-      <label for="minutes">Number of minutes before training:</label>
-      <input
-        type="number"
-        id="minutes"
-        name="minutes"
-        min="0"
-        max="59"
-        step="1"
-        required
-      />
-      <br /><br />
+The introduction summarizes the purpose and function of the project, and should be concise (a brief paragraph or two). This introduction may be the same as the first paragraph on the project page.
 
-      <button type="submit">Calculate</button>
-    </form>
+For a full description of the module, visit the
+[project page](https://x)
 
-    <div id="result"></div>
+Submit bug reports and feature suggestions, or track changes in the
+[issue queue] x
 
-    <script>
-      // JavaScript code goes here
-      document
-        .getElementById("nutritionForm")
-        .addEventListener("submit", function (event) {
-          event.preventDefault(); // Prevent form submission for now
+## Table of contents (optional)
 
-          var mass = parseFloat(document.getElementById("mass").value); // Get mass input
-          var hours = parseInt(document.getElementById("hours").value); // Get hours input
-          var minutes = parseInt(document.getElementById("minutes").value); // Get minutes input
+- Requirements
+- Recommended modules
+- Installation
+- Configuration
+- Troubleshooting
+- FAQ
+- Maintainers
 
-          // Validate inputs
-          if (
-            isNaN(mass) ||
-            isNaN(hours) ||
-            isNaN(minutes) ||
-            hours < 0 ||
-            minutes < 0 ||
-            minutes >= 60
-          ) {
-            // Handle invalid input
-            document.getElementById("result").innerHTML =
-              "Please enter valid values for mass, hours, and minutes.";
-            return;
-          }
+## Requirements (required)
 
-          // Calculate total minutes
-          var minsToHours = minutes / 60;
-          var preTrainingTime = hours + minsToHours;
+This module requires the following modules:
 
-          // Calculate carbohydrate intake based on pre-training time and mass
-          var CHO = calculatePreTrainingCHO(preTrainingTime, mass);
+-
 
-          // Calculate carbohydrate intake range
-          var result = calculateCHOrange(CHO, preTrainingTime);
+OR
 
-          // Display the result
-          document.getElementById("result").innerHTML = result;
-        });
+This module requires no modules outside of x
 
-      // Function to calculate carbohydrate intake based on pre-training time and mass
-      function calculatePreTrainingCHO(preTrainingTime, mass) {
-        var CHO;
-        if (preTrainingTime < 1 + 0.001) {
-          // If less than 1 hour before training
-          CHO = 1 * preTrainingTime * mass; // Convert to number
-        } else if (preTrainingTime >= 1 && preTrainingTime < 2) {
-          // If between 1 and 2 hours before training
-          CHO = 1 * preTrainingTime * mass; // Convert to number
-        } else if (preTrainingTime >= 2 && preTrainingTime < 3) {
-          // If between 2 and 3 hours before training
-          CHO = 2 * mass; // Convert to number
-        } else if (preTrainingTime >= 3 && preTrainingTime < 4) {
-          // If between 3 and 4 hours before training
-          CHO = 3 * mass; // Convert to number
-        } else if (preTrainingTime >= 4) {
-          // If more than 4 hours before training
-          CHO = 4 * mass; // Convert to number
-        }
-        return CHO; // Convert to string after all calculations are done
-      }
+## Recommended modules (optional)
 
-      // Function to calculate carbohydrate intake range
-      function calculateCHOrange(CHO, preTrainingTime) {
-        var lowerCHO = CHO - CHO * 0.1;
-        var result = "";
+## Installation (required, unless a separate INSTALL.md is provided)
 
-        if (Math.floor(preTrainingTime) < 1) {
-          result +=
-            "Given you are exercising in less than 1 hour, you should consume: " +
-            CHO.toFixed(0) +
-            " grams of carbohydrate.<br/><br/>However, if you are prone to gastrointestinal issues, consider consuming less.<br/><br/>For next time, we recommend you consume your final meal more than 1 hour prior to exercise.<br/><br/>";
-        }
+Install as you would normally install a contributed Drupal module. For further information, see [Installing Drupal Modules](https://www.drupal.org/docs/extending-drupal/installing-drupal-modules).
 
-        result +=
-          "Based on the amount of time before training, you can consume about " +
-          CHO.toFixed(0) +
-          " grams of carbohydrate.<br/><br/>";
-        result += "We recommend the following range to also be suitable:<br/>";
-        result +=
-          lowerCHO.toFixed(0) +
-          " to " +
-          CHO.toFixed(0) +
-          " grams of carbohydrate";
-        return result;
-      }
-    </script>
-  </body>
-</html>
+## Configuration (required)
+
+1. Enable the module at Administration > Extend.
+1. Profit.
+
+## Troubleshooting (optional)
+
+## FAQ (optional)
+
+**Q: How do I write a module README?**
+
+**A:** Follow this template. It's fun and easy!
+
+## Future suggestions and ideas
+
+- Pace calculators
+- Race splits
+- m/heart beat code
+- Report Generator
+
+## Maintainers (optional)
