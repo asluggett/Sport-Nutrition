@@ -6,7 +6,6 @@
     <link rel="stylesheet" href="styles.css">
   </head>
   <body>
-    <a href="Sport-Nutrition/intra_nutritional_calculator.html">Link to Nutrition Calculator During Exercise</a>
     <h1>Pre-Training Carbohydrate Calculator</h1>
     <p>
       For calculating individual carbohydrate requirements for before training.
