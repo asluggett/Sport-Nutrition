@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nutrition Carbohydrate Calculator</title>
+    <style>
+      /* Add your CSS styles here */
+    </style>
+  </head>
+  <body>
+    <h1>Intra-Training and Event Carbohydrate Decision Maker</h1>
+    <p>
+      For calculating carbohydrate requirements for during training and
+      competition.
+    </p>
+
+    <form id="nutritionForm">
+      <label for="hours">Expected training/event duration (hours): </label>
+      <input type="number" id="hours" name="hours" min="0" required />
+      <label for="minutes"> Expected training/event duration (minutes): </label>
+      <input
+        type="number"
+        id="minutes"
+        name="minutes"
+        min="0"
+        max="59"
+        step="1"
+        required
+      />
+      <br /><br />
+
+      <label for="intensity"> Event/Training Intensity: </label>
+      <select id="intensity" name="intensity" required>
+        <option value="light">Light</option>
+        <option value="moderate">Moderate</option>
+        <option value="hard">Hard</option>
+        <option value="raceEffort">Race Effort</option>
+      </select>
+      <br /><br />
+
+      <button type="submit">Calculate</button>
+      <br /><br />
+    </form>
+
+    <div id="result"></div>
+
+    <script>
+      // JavaScript code goes here
+      document
+        .getElementById("nutritionForm")
+        .addEventListener("submit", function (event) {
+          event.preventDefault(); // Prevent form submission for now
+
+          var hours = parseInt(document.getElementById("hours").value); // Get hours input
+          var minutes = parseInt(document.getElementById("minutes").value); // Get minutes input
+          var intensity = document.getElementById("intensity").value; // Get intensity input
+
+          var exerciseDuration = hours * 60 + minutes; // Convert hours and minutes to total minutes
+
+          // Calculate carbohydrate intake requirement
+          var CHO = calculateCHORequirement(exerciseDuration, intensity);
+
+          // Display the result
+          document.getElementById("result").innerHTML =
+            "Recommended Carbohydrate Intake during exercise: " +
+            CHO.CHO +
+            " grams per hour" +
+            "<br><br>" +
+            CHO.additionalText;
+        });
+
+      function calculateCHORequirement(exerciseDuration, intensity) {
+        let CHO;
+        let additionalText = "";
+
+        if (intensity === "light") {
+          if (exerciseDuration <= 60) {
+            CHO = 0;
+            additionalText =
+              "Based on your exercise intensity and duration, you don't need to consume carbohydrates. However, you may like to do a carbohydrate mouth rinse during exercise to improve perceived effort.";
+          } else if (exerciseDuration < 75) {
+            CHO = 1;
+            additionalText =
+              "It's optional to consume carbohydrates during your event.";
+          } else {
+            CHO = 1;
+            additionalText =
+              "You may consider consuming up to 60 grams per hour of glucose to support exercise demand.";
+          }
+        } else if (
+          intensity === "moderate" ||
+          intensity === "hard" ||
+          intensity === "raceEffort"
+        ) {
+          if (exerciseDuration >= 150) {
+            CHO = 90;
+            additionalText =
+              "You have a very high exercise demand. To consume 90 grams of carbohydrate per hour, you need to consume multiple transportable carbohydrates. We recommend 60 grams of glucose and 30 grams of fructose to support exercise demand.";
+          } else if (exerciseDuration < 150 && exerciseDuration >= 60) {
+            CHO = 60;
+            dditionalText =
+              "We recommend you consume at least 60 grams per hour of glucose to support exercise demand.";
+          }
+        }
+
+        return { CHO: CHO, additionalText: additionalText };
+      }
+    </script>
+  </body>
+</html>
