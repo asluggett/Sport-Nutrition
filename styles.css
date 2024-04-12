@@ -4,6 +4,11 @@ body {
   text-align: center;
 }
 
-.intensity-section div {
+.intensity-section {
   text-align: center;
+}
+
+.intensity-section div {
+  display: block;
+  text-align: left;
 }
