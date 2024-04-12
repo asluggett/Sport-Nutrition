@@ -91,7 +91,7 @@ function calculateDailyTrainingCHO(mass, intensity) {
       CHOlower +
       " to " +
       CHOupper +
-      " grams of carbohydrate per kilogram of body mass";
+      " grams of carbohydrate ";
   } else if (intensity === "moderate") {
     CHOlower = mass * 5;
     CHOupper = mass * 7;
@@ -100,7 +100,7 @@ function calculateDailyTrainingCHO(mass, intensity) {
       CHOlower +
       " to " +
       CHOupper +
-      " grams of carbohydrate per kilogram of body mass";
+      " grams of carbohydrate ";
   } else if (intensity === "high") {
     CHOlower = mass * 6;
     CHOupper = mass * 10;
@@ -109,7 +109,7 @@ function calculateDailyTrainingCHO(mass, intensity) {
       CHOlower +
       " to " +
       CHOupper +
-      " grams of carbohydrate per kilogram of body mass";
+      " grams of carbohydrate ";
   } else if (intensity === "veryHigh") {
     CHOlower = mass * 8;
     CHOupper = mass * 12;
@@ -118,7 +118,7 @@ function calculateDailyTrainingCHO(mass, intensity) {
       CHOlower +
       " to " +
       CHOupper +
-      " grams of carbohydrate per kilogram of body mass";
+      " grams of carbohydrate ";
   } else if (intensity === "strengthPower") {
     CHOlower = mass * 4;
     CHOupper = mass * 7;
@@ -127,7 +127,7 @@ function calculateDailyTrainingCHO(mass, intensity) {
       CHOlower +
       " to " +
       CHOupper +
-      " grams of carbohydrate per kilogram of body mass";
+      " grams of carbohydrate ";
   }
 
   return { CHO: CHOlower + " to " + CHOupper, additionalText: additionalText };
