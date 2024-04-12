@@ -103,8 +103,13 @@
               "You have a very high exercise demand. To consume 90 grams of carbohydrate per hour, you need to consume multiple transportable carbohydrates. We recommend 60 grams of glucose and 30 grams of fructose to support exercise demand.";
           } else if (exerciseDuration < 150 && exerciseDuration >= 60) {
             CHO = 60;
-            dditionalText =
+            additionalText =
               "We recommend you consume at least 60 grams per hour of glucose to support exercise demand.";
+          }
+          else {
+            CHO = 0;
+            additionalText =
+              "Inter-exercise carbohydrate not recommended for this duration short duration ";
           }
         }
 
