@@ -1,111 +1,112 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Nutrition Carbohydrate Calculator</title>
-<style>
- label {
-    font-weight: bold;
-  }
-</style>
-<link rel="stylesheet" href="styles.css" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nutrition Carbohydrate Calculator</title>
+  <style>
+    label {
+      font-weight: bold;
+    }
+  </style>
+  <link rel="stylesheet" href="styles.css" />
 </head>
+
 <body>
-<br />
-<h1>Global Daily Carbohydrate Calculator</h1>
-<p>
-For calculating individual daily carbohydrate requirements. Values are
-expressed in grams per kilogram of body mass per day. Based on daily
-training demands
-</p>
-<p><u>Please use the following guide to select your daily training demands:</u></p>
-<p style= "line-height: 2;">
-  <div><b>Light:</b> low intensity/skill based activities</div>
-  <div><b>Moderate:</b> Moderate training program approximately 1 hour per day</div>
-  <div><b>High:</b> Moderate to high intensity daily endurance training totalling 1 to 3 hours per day</div>
-  <div><b>Very High:</b> Greater than 4 to 5 hours per day of moderate to high intensity endurance exercise</div>
-  <div><b>Strength and Power:</b> Sprinters and other power athletes</div>
-</p>
+  <br />
+  <header>
+    <h1>Global Daily Carbohydrate Calculator</h1>
+    <p>
+      For calculating individual daily carbohydrate requirements. Values are
+      expressed in grams per kilogram of body mass per day. Based on daily
+      training demands
+    </p>
+  </header>
 
-<form id="nutritionForm">
-  <label for="mass">Mass (kg):</label>
-  <input
-    type="number"
-    id="mass"
-    name="mass"
-    min="1"
-    step="0.1"
-    required
-  /><br /><br />
+  <section class="intensity-section">
+    <p><u>Please use the following guide to select your daily training demands:</u></p>
+    <p>
+    <div><b>Light:</b> low intensity/skill based activities</div>
+    <div><b>Moderate:</b> Moderate training program approximately 1 hour per day</div>
+    <div><b>High:</b> Moderate to high intensity daily endurance training totalling 1 to 3 hours per day</div>
+    <div><b>Very High:</b> Greater than 4 to 5 hours per day of moderate to high intensity endurance exercise</div>
+    <div><b>Strength and Power:</b> Sprinters and other power athletes</div>
+    </p>
+  </section>
 
-  <label for="intensity"> Daily Training Demand: </label>
-  <select id="intensity" name="intensity" required>
-    <option value="light">Light</option>
-    <option value="moderate">Moderate</option>
-    <option value="high">High</option>
-    <option value="veryHigh">Very High</option>
-    <option value="strengthPower">Strength & Power</option>
-  </select>
-  <br /><br />
+  <form id="nutritionForm">
+    <label for="mass">Mass (kg):</label>
+    <input type="number" id="mass" name="mass" min="1" step="0.1" required /><br /><br />
 
-  <button type="submit">Calculate</button>
-  <br /><br />
-</form>
+    <label for="intensity"> Daily Training Demand: </label>
+    <select id="intensity" name="intensity" required>
+      <option value="light">Light</option>
+      <option value="moderate">Moderate</option>
+      <option value="high">High</option>
+      <option value="veryHigh">Very High</option>
+      <option value="strengthPower">Strength & Power</option>
+    </select>
+    <br /><br />
 
-<div id="result"></div>
+    <button type="submit">Calculate</button>
+    <br /><br />
+  </form>
 
-<script>
-// JavaScript code goes here
-document
-  .getElementById("nutritionForm")
-  .addEventListener("submit", function (event) {
-    event.preventDefault(); // Prevent form submission for now
+  <div id="result"></div>
 
-    var mass = parseFloat(document.getElementById("mass").value); // Get mass input
-    var intensity = document.getElementById("intensity").value; // Get intensity input
+  <script>
+    // JavaScript code goes here
+    document
+      .getElementById("nutritionForm")
+      .addEventListener("submit", function (event) {
+        event.preventDefault(); // Prevent form submission for now
 
-    // Calculate carbohydrate intake requirement
-    var result = calculateDailyTrainingCHO(mass, intensity);
+        var mass = parseFloat(document.getElementById("mass").value); // Get mass input
+        var intensity = document.getElementById("intensity").value; // Get intensity input
 
-    // Display the result
-    document.getElementById("result").innerHTML =
-      "Recommended Total Daily Carbohydrate Intake: " +
-      result.CHO +
-      " grams per day"
-  });
+        // Calculate carbohydrate intake requirement
+        var result = calculateDailyTrainingCHO(mass, intensity);
 
-// Function to calculate carbohydrate intake range
-function calculateDailyTrainingCHO(mass, intensity) {
-  let CHOlower;
-  let CHOupper;
+        // Display the result
+        document.getElementById("result").innerHTML =
+          "Recommended Total Daily Carbohydrate Intake: " +
+          result.CHO +
+          " grams per day"
+      });
 
-  if (intensity === "light") {
-    CHOlower = mass * 3;
-    CHOupper = mass * 5;
+    // Function to calculate carbohydrate intake range
+    function calculateDailyTrainingCHO(mass, intensity) {
+      let CHOlower;
+      let CHOupper;
 
-  } else if (intensity === "moderate") {
-    CHOlower = mass * 5;
-    CHOupper = mass * 7;
+      if (intensity === "light") {
+        CHOlower = mass * 3;
+        CHOupper = mass * 5;
 
-  } else if (intensity === "high") {
-    CHOlower = mass * 6;
-    CHOupper = mass * 10;
+      } else if (intensity === "moderate") {
+        CHOlower = mass * 5;
+        CHOupper = mass * 7;
 
-  } else if (intensity === "veryHigh") {
-    CHOlower = mass * 8;
-    CHOupper = mass * 12;
+      } else if (intensity === "high") {
+        CHOlower = mass * 6;
+        CHOupper = mass * 10;
 
-  } else if (intensity === "strengthPower") {
-    CHOlower = mass * 4;
-    CHOupper = mass * 7;
-  }
+      } else if (intensity === "veryHigh") {
+        CHOlower = mass * 8;
+        CHOupper = mass * 12;
 
-  return { CHO: CHOlower + " to " + CHOupper};
-}
-</script>
-<p>
-  <a href="/Sport-Nutrition/index.html"> Back to Home </a>
-</p>
+      } else if (intensity === "strengthPower") {
+        CHOlower = mass * 4;
+        CHOupper = mass * 7;
+      }
+
+      return { CHO: CHOlower + " to " + CHOupper };
+    }
+  </script>
+  <p>
+    <a href="/Sport-Nutrition/index.html"> Back to Home </a>
+  </p>
 </body>
+
 </html>

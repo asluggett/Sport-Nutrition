@@ -3,3 +3,8 @@ body {
   background: lightblue;
   text-align: center;
 }
+
+.intensity-section p {
+  text-align: left;
+
+}
