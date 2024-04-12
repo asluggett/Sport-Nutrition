@@ -50,7 +50,7 @@ training demands
   <br /><br />
 
   <button type="submit">Calculate</button>
- <br>
+  <br /><br />
 </form>
 
 <div id="result"></div>
@@ -72,65 +72,36 @@ document
     document.getElementById("result").innerHTML =
       "Recommended Total Daily Carbohydrate Intake: " +
       result.CHO +
-      " grams per day" +
-      "<br><br>" +
-      result.additionalText;
+      " grams per day"
   });
 
 // Function to calculate carbohydrate intake range
 function calculateDailyTrainingCHO(mass, intensity) {
   let CHOlower;
   let CHOupper;
-  let additionalText = "";
 
   if (intensity === "light") {
     CHOlower = mass * 3;
     CHOupper = mass * 5;
-    additionalText =
-      "Your daily carbohydrate needs range from" +
-      CHOlower +
-      " to " +
-      CHOupper +
-      " grams of carbohydrate ";
+
   } else if (intensity === "moderate") {
     CHOlower = mass * 5;
     CHOupper = mass * 7;
-    additionalText =
-      "Your daily carbohydrate needs range from" +
-      CHOlower +
-      " to " +
-      CHOupper +
-      " grams of carbohydrate ";
+
   } else if (intensity === "high") {
     CHOlower = mass * 6;
     CHOupper = mass * 10;
-    additionalText =
-      "Your daily carbohydrate needs range from" +
-      CHOlower +
-      " to " +
-      CHOupper +
-      " grams of carbohydrate ";
+
   } else if (intensity === "veryHigh") {
     CHOlower = mass * 8;
     CHOupper = mass * 12;
-    additionalText =
-      "Your daily carbohydrate needs range from" +
-      CHOlower +
-      " to " +
-      CHOupper +
-      " grams of carbohydrate ";
+
   } else if (intensity === "strengthPower") {
     CHOlower = mass * 4;
     CHOupper = mass * 7;
-    additionalText =
-      "Your daily carbohydrate needs range from" +
-      CHOlower +
-      " to " +
-      CHOupper +
-      " grams of carbohydrate ";
   }
 
-  return { CHO: CHOlower + " to " + CHOupper, additionalText: additionalText };
+  return { CHO: CHOlower + " to " + CHOupper};
 }
 </script>
 <p>
