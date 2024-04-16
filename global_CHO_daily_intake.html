@@ -18,13 +18,13 @@
   <header>
     <h1>Global Daily Carbohydrate Calculator</h1>
     <p>
-      For calculating individual daily carbohydrate requirements. Based on daily
+      <b>Purpose:</b> For calculating individual daily carbohydrate requirements. Based on daily
       training demands and considers the intensity of training to provide a daily intake recommendation
     </p>
   </header>
 
   <section class="intensity-section">
-    <p><u>Please use the following guide to select your daily training demands:</u></p>
+    <p><b>Please use the following guide to select your daily training demands:</b></p>
     <div><span class="intensity-label"><b>Light:</b> low intensity/skill based activities</div>
     <div><span class="intensity-label"><b>Moderate:</b> Moderate training program approximately 1 hour per day</div>
     <div><span class="intensity-label"><b>High:</b> Moderate to high intensity daily endurance training totalling 1 to 3 hours per day</div>
@@ -52,6 +52,11 @@
   </form>
 
   <div id="result"></div>
+  <div id="pdflink" style="display: none">
+    <a href="NUTR_Content_Global_Example_CHO.pdf" target="_blank"
+      >Download PDF to view a global overview on carbohydrate requirements for athletes!</a
+    >
+  </div>
 
   <script>
     // JavaScript code goes here
@@ -70,7 +75,8 @@
         document.getElementById("result").innerHTML =
           "Recommended Total Daily Carbohydrate Intake: " +
           result.CHO +
-          " grams per day"
+          " grams per day";
+        document.getElementById("pdflink").style.display = "block";
       });
 
     // Function to calculate carbohydrate intake range
