@@ -3,24 +3,34 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Nutrition Carbohydrate Calculator</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css" />
     <style>
-    label {
-      font-weight: bold;
-    }
+      label {
+        font-weight: bold;
+      }
     </style>
   </head>
   <body>
-    <br>
+    <br />
     <h1>Intra-Training and Event Carbohydrate Decision Maker</h1>
-    <p><u>
+    <p>
+      <b>Purpose:</b>
       For calculating carbohydrate requirements for during training and
-      competition.</u>
+      competition.
     </p>
+    <b><u>Time before exercise:</u> </b> <br /><br />
 
     <form id="nutritionForm">
-      <label for="hours"> <b>Expected training/event duration </b> Hours : </label>
-      <input type="number" id="hours" name="hours" min="0" style="width:90px;" required />
+      <label for="hours"> Hours : </label>
+      <input
+        type="number"
+        id="hours"
+        name="hours"
+        min="0"
+        style="width: 90px"
+        required
+      />
+      <br /><br />
       <label for="minutes"> Minutes: </label>
       <input
         type="number"
@@ -29,7 +39,7 @@
         min="0"
         max="59"
         step="1"
-        style="width:90px;"
+        style="width: 90px"
         required
       />
       <br /><br />
@@ -48,6 +58,12 @@
     </form>
 
     <div id="result"></div>
+    <div id="pdflink" style="display: none">
+      <a href="During_Exercise_Sport_Nutrition_Content.pdf" target="_blank"
+        >Download PDF to view information and example foods to consume during
+        exercise!</a
+      >
+    </div>
 
     <script>
       // JavaScript code goes here
@@ -63,7 +79,12 @@
           var exerciseDuration = hours * 60 + minutes; // Convert hours and minutes to total minutes
 
           // Calculate carbohydrate intake requirement
-          var CHO = calculateCHORequirement(exerciseDuration, intensity);
+          var CHO = calculateCHORequirement(
+            exerciseDuration,
+            intensity,
+            hours,
+            minutes
+          );
 
           // Display the result
           document.getElementById("result").innerHTML =
@@ -72,9 +93,15 @@
             " grams per hour" +
             "<br><br>" +
             CHO.additionalText;
+          document.getElementById("pdflink").style.display = "block";
         });
 
-      function calculateCHORequirement(exerciseDuration, intensity) {
+      function calculateCHORequirement(
+        exerciseDuration,
+        intensity,
+        hours,
+        minutes
+      ) {
         let CHO;
         let additionalText = "";
 
@@ -82,15 +109,27 @@
           if (exerciseDuration <= 60) {
             CHO = 0;
             additionalText =
-              "Based on your exercise intensity and duration, you don't need to consume carbohydrates. However, you may like to do a carbohydrate mouth rinse during exercise to improve perceived effort.";
+              "Based on your exercise intensity and duration, (" +
+              hours +
+              " hours and " +
+              minutes +
+              " minutes), you don't need to consume carbohydrates.\nHowever, you may like to do a carbohydrate mouth rinse during exercise to improve perceived effort.";
           } else if (exerciseDuration < 75) {
             CHO = 1;
             additionalText =
-              "It's optional to consume carbohydrates during your event.";
+              "Based on your exercise intensity and duration, (" +
+              hours +
+              " hours and " +
+              minutes +
+              " minutes), it's optional to consume carbohydrates during your event.";
           } else {
             CHO = 1;
             additionalText =
-              "You may consider consuming up to 60 grams per hour of glucose to support exercise demand.";
+              "Based on your exercise intensity and duration, (" +
+              hours +
+              " hours and " +
+              minutes +
+              " minutes), you may consider consuming up to 60 grams per hour of glucose to support exercise demand.";
           }
         } else if (
           intensity === "moderate" ||
@@ -100,16 +139,27 @@
           if (exerciseDuration >= 150) {
             CHO = 90;
             additionalText =
-              "You have a very high exercise demand. To consume 90 grams of carbohydrate per hour, you need to consume multiple transportable carbohydrates. We recommend 60 grams of glucose and 30 grams of fructose to support exercise demand.";
+              "Based on your exercise intensity and duration, (" +
+              hours +
+              " hours and " +
+              minutes +
+              " minutes), you have a very high exercise demand.\nTo consume 90 grams of carbohydrate per hour, you need to consume multiple transportable carbohydrates.\nWe recommend 60 grams of glucose and 30 grams of fructose to support exercise demand.";
           } else if (exerciseDuration < 150 && exerciseDuration >= 60) {
             CHO = 30;
             additionalText =
-              "We recommend you consume at least 30 grams of carbohydrate per hour and up to 60 grams per hour of glucose to support exercise demand.\n As a general rule, as duration increases, so do fuelling requirements. ";
-          }
-          else {
+              "Based on your exercise intensity and duration, (" +
+              hours +
+              " hours and " +
+              minutes +
+              " minutes), we recommend you consume at least 30 grams of carbohydrate per hour and up to 60 grams per hour of glucose to support exercise demand.\nAs a general rule, as duration increases, so do fuelling requirements. ";
+          } else {
             CHO = 0;
             additionalText =
-              "Inter-exercise carbohydrate not recommended for this duration short duration ";
+              "Based on your exercise intensity and duration, (" +
+              hours +
+              " hours and " +
+              minutes +
+              " minutes), inter-exercise carbohydrate not recommended for this duration short duration ";
           }
         }
 
