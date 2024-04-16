@@ -3,18 +3,21 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Nutrition Carbohydrate Calculator</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css" />
     <style>
-    label {
-      font-weight: bold;
-    }
+      label {
+        font-weight: bold;
+      }
     </style>
   </head>
   <body>
-    <br>
+    <br />
     <h1>Pre-Training Carbohydrate Calculator</h1>
     <p>
-      For calculating individual carbohydrate requirements for before training.
+      <b>Purpose:</b> For calculating individual carbohydrate requirements for
+      before training. <br /><br />
+      <b>Time frame: </b>Use this calculator up to 4 hours before training to
+      determine carbohydrate amount
     </p>
 
     <form id="nutritionForm">
@@ -25,11 +28,23 @@
         name="mass"
         min="1"
         step="0.1"
-        style="width:90px;"
+        style="width: 90px"
         required
       /><br /><br />
-      <label for="hours"><b>Time before exercise: </b> Hours :</label>
-      <input type="number" id="hours" name="hours" min="0" style="width:90px;" required />
+      <label for="hours"
+        ><b><u>Time before exercise:</u> </b> <br /><br />
+
+        Hours :</label
+      >
+      <input
+        type="number"
+        id="hours"
+        name="hours"
+        min="0"
+        style="width: 90px"
+        required
+      />
+      <br /><br />
       <label for="minutes">Minutes: </label>
       <input
         type="number"
@@ -38,15 +53,21 @@
         min="0"
         max="59"
         step="1"
-        style="width:90px;"
+        style="width: 90px"
         required
       />
       <br /><br />
+      <br />
 
       <button type="submit">Calculate</button>
     </form>
 
     <div id="result"></div>
+    <div id="pdflink" style="display: none">
+      <a href="Before_Exercise_Sport_Nutrition_Content.pdf" target="_blank"
+        >Download PDF to view example foods to consume pre-exercise!</a
+      >
+    </div>
 
     <script>
       // JavaScript code goes here
@@ -82,10 +103,11 @@
           var CHO = calculatePreTrainingCHO(preTrainingTime, mass);
 
           // Calculate carbohydrate intake range
-          var result = calculateCHOrange(CHO, preTrainingTime);
+          var result = calculateCHOrange(CHO, preTrainingTime, hours, minutes);
 
           // Display the result
           document.getElementById("result").innerHTML = result;
+          document.getElementById("pdflink").style.display = "block";
         });
 
       // Function to calculate carbohydrate intake based on pre-training time and mass
@@ -111,30 +133,32 @@
       }
 
       // Function to calculate carbohydrate intake range
-      function calculateCHOrange(CHO, preTrainingTime) {
+      function calculateCHOrange(CHO, preTrainingTime, hours, minutes) {
         var lowerCHO = CHO - CHO * 0.1;
         var result = "";
 
         if (Math.floor(preTrainingTime) < 1) {
           result +=
-            "Given you are exercising in less than 1 hour, you should consume: " +
+            "Given you are exercising in less than 1 hour, (" +
+            minutes +
+            " minutes), you should consume: " +
             CHO.toFixed(0) +
             " grams of carbohydrate.<br/><br/>However, if you are prone to gastrointestinal issues, consider consuming less.<br/><br/>For next time, we recommend you consume your final meal more than 1 hour prior to exercise.<br/><br/>";
         }
-
         result +=
-          "Based on the amount of time before training, you can consume about " +
-          CHO.toFixed(0) +
-          " grams of carbohydrate.<br/><br/>";
-        result += "We recommend the following range to also be suitable:<br/>";
-        result +=
+          "Based on the amount of time before training (" +
+          hours +
+          " hours and " +
+          minutes +
+          " minutes), you can consume between " +
           lowerCHO.toFixed(0) +
           " to " +
           CHO.toFixed(0) +
-          " grams of carbohydrate";
+          " grams of carbohydrate.<br/><br/>";
         return result;
       }
     </script>
+    <br /><br />
     <p>
       <a href="/Sport-Nutrition/index.html"> Back to Home </a>
     </p>
