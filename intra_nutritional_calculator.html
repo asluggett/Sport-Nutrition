@@ -113,7 +113,7 @@
               hours +
               " hours and " +
               minutes +
-              " minutes), you don't need to consume carbohydrates.\nHowever, you may like to do a carbohydrate mouth rinse during exercise to improve perceived effort.";
+              " minutes), you don't need to consume carbohydrates.\nHowever, you may like to do a carbohydrate mouth rinse during exercise to improve perceived effort.<br/><br/>";
           } else if (exerciseDuration < 75) {
             CHO = 1;
             additionalText =
@@ -121,7 +121,7 @@
               hours +
               " hours and " +
               minutes +
-              " minutes), it's optional to consume carbohydrates during your event.";
+              " minutes), it's optional to consume carbohydrates during your event.<br/><br/>";
           } else {
             CHO = 1;
             additionalText =
@@ -129,7 +129,7 @@
               hours +
               " hours and " +
               minutes +
-              " minutes), you may consider consuming up to 60 grams per hour of glucose to support exercise demand.";
+              " minutes), you may consider consuming up to 60 grams per hour of glucose to support exercise demand.<br/><br/>";
           }
         } else if (
           intensity === "moderate" ||
@@ -143,7 +143,7 @@
               hours +
               " hours and " +
               minutes +
-              " minutes), you have a very high exercise demand.\nTo consume 90 grams of carbohydrate per hour, you need to consume multiple transportable carbohydrates.\nWe recommend 60 grams of glucose and 30 grams of fructose to support exercise demand.";
+              " minutes), you have a very high exercise demand.\nTo consume 90 grams of carbohydrate per hour, you need to consume multiple transportable carbohydrates.\nWe recommend 60 grams of glucose and 30 grams of fructose to support exercise demand.<br/><br/>";
           } else if (exerciseDuration < 150 && exerciseDuration >= 60) {
             CHO = 30;
             additionalText =
@@ -151,7 +151,7 @@
               hours +
               " hours and " +
               minutes +
-              " minutes), we recommend you consume at least 30 grams of carbohydrate per hour and up to 60 grams per hour of glucose to support exercise demand.\nAs a general rule, as duration increases, so do fuelling requirements. ";
+              " minutes), we recommend you consume at least 30 grams of carbohydrate per hour and up to 60 grams per hour of glucose to support exercise demand.\nAs a general rule, as duration increases, so do fuelling requirements.<br/><br/>";
           } else {
             CHO = 0;
             additionalText =
@@ -159,7 +159,7 @@
               hours +
               " hours and " +
               minutes +
-              " minutes), inter-exercise carbohydrate not recommended for this duration short duration ";
+              " minutes), inter-exercise carbohydrate not recommended for this duration short duration.<br/><br/> ";
           }
         }
 
