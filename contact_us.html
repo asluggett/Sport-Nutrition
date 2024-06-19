@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact Us</title>
+    <link rel="stylesheet" type="text/css" media="screen" href="styles.css" />
+  </head>
+  <body>
+    <h1>Contact Us</h1>
+    <p>Submit your inquiry below:</p>
+    <br />
+    <br />
+    <form
+      id="contact-us"
+      action="https://api.web3forms.com/submit"
+      method="POST"
+    >
+      <input
+        type="hidden"
+        name="access_key"
+        value="1262736d-7650-4f9f-8df5-cd6ec3a070a0"
+      />
+      <!-- Spam Protection -->
+      <input
+        type="checkbox"
+        name="botcheck"
+        class="hidden"
+        style="display: none"
+      />
+      <label for="inquiry-type"> <b>Inquiry Type </b> </label>
+      <select id="intensity" name="intensity" required>
+        <option value="general-inquiry">General Inquiry</option>
+        <option value="other">Content Question</option>
+        <option value="general-comment">General Comment</option>
+        <option value="other">Other</option>
+      </select>
+      <br /><br />
+      <label for="comments">Your Message: </label>
+      <br /><br />
+      <textarea
+        id="comments"
+        name="comments"
+        cols="46"
+        rows="5"
+        required
+      ></textarea>
+      <br /><br />
+      <p>
+        Please provide your email address below if you would like a response to
+        your inquiry:
+      </p>
+      <br /><br />
+      <label for="email"> Email: </label>
+      <input type="email" id="email" name="email" />
+      <br /><br />
+      <button type="submit">Submit</button>
+    </form>
+    <div id="message"></div>
+    <br /><br />
+    <div class="back-link">
+      <a href="/Sport-Nutrition/index.html">Back to Home</a>
+    </div>
+  </body>
+  <script>
+    const form = document.getElementById("contact-us");
+    const result = document.getElementById("message");
+
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      const formData = new FormData(form);
+      const object = Object.fromEntries(formData);
+      const json = JSON.stringify(object);
+      result.innerHTML = "Please wait...";
+
+      fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: json,
+      })
+        .then(async (response) => {
+          let json = await response.json();
+          if (response.status == 200) {
+            result.innerHTML = "Form submitted successfully";
+            result.style.color = "green";
+          } else {
+            console.log(response);
+            result.innerHTML = json.message;
+            result.style.color = "red";
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+          result.innerHTML = "Something went wrong!";
+          result.style.color = "red";
+        })
+        .then(function () {
+          form.reset();
+          setTimeout(() => {
+            result.style.display = "none";
+          }, 3000);
+        });
+    });
+  </script>
+</html>
