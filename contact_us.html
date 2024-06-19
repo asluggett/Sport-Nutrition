@@ -5,12 +5,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Contact Us</title>
     <link rel="stylesheet" type="text/css" media="screen" href="styles.css" />
+    <style>
+      h1 {
+        /* background-color: ; */ /* Add background color later */
+        /* color: ; */ /* Add text color later */
+        padding: 10px 0;
+      }
+      p {
+        margin: 20px;
+        font-size: 17px;
+      }
+      a {
+        display: block;
+        margin: 10px 0;
+        padding: 10px 0;
+        /* color: ; */ /* Add text color */
+        text-decoration: none;
+      }
+    </style>
   </head>
   <body>
     <h1>Contact Us</h1>
-    <p>Submit your inquiry below:</p>
-    <br />
-    <br />
+    <p>
+      Submit your inquiry below, please provide your email address below if you
+      would like a direct response
+    </p>
     <form
       id="contact-us"
       action="https://api.web3forms.com/submit"
@@ -45,19 +64,13 @@
         rows="5"
         required
       ></textarea>
-      <br /><br />
-      <p>
-        Please provide your email address below if you would like a response to
-        your inquiry:
-      </p>
-      <br /><br />
-      <label for="email"> Email: </label>
-      <input type="email" id="email" name="email" />
+      <p></p>
+      <label for="email"> <b> Email: </b></label>
+      <input type="email" id="email" name="email" placeholder="optional" />
       <br /><br />
       <button type="submit">Submit</button>
     </form>
     <div id="message"></div>
-    <br /><br />
     <div class="back-link">
       <a href="/Sport-Nutrition/index.html">Back to Home</a>
     </div>
